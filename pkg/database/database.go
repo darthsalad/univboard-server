@@ -58,3 +58,11 @@ func Connect(uriString string) (*Database, error) {
 
 	return &Database{db}, nil
 }
+
+func (db *Database) Close() error {
+	return db.DB.Close()
+}
+
+func (db *Database) Query(query string, args ...interface{}) (*sql.Rows, error) {
+	return db.DB.Query(query, args...)
+}
