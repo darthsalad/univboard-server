@@ -136,7 +136,7 @@ func GetProfile(db *database.Database, w http.ResponseWriter, r *http.Request) e
 		logger.Logf("err responding: %v", err)
 		return err
 	}
-
+	
 	return nil
 }
 

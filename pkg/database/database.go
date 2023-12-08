@@ -20,7 +20,19 @@ func (db *Database) Init() error {
 			email VARCHAR(255) NOT NULL UNIQUE,
 			created_at DATETIME NOT NULL DEFAULT (NOW()),
 			updated_at DATETIME NOT NULL DEFAULT (NOW())
-		)`,
+		);
+		
+		CREATE TABLE IF NOT EXISTS devices (
+			id CHAR(36) NOT NULL DEFAULT (UUID()) PRIMARY KEY,
+			user_id CHAR(36) NOT NULL,
+			name VARCHAR(255) NOT NULL,
+			os VARCHAR(255) NOT NULL,
+			os_version VARCHAR(255) NOT NULL,
+			created_at DATETIME NOT NULL DEFAULT (NOW()),
+			updated_at DATETIME NOT NULL DEFAULT (NOW()),
+			FOREIGN KEY (user_id) REFERENCES users(id)
+		);
+		`,
 	)
 	if err != nil {
 		logger.Logf("err creating table: %v", err)
