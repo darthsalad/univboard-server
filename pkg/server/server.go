@@ -36,7 +36,7 @@ func (s *Server) Stop(ctx context.Context) error {
 	return s.server.Shutdown(ctx)
 }
 
-func middleware(next http.Handler) http.Handler {
+func middleware() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*") 
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
